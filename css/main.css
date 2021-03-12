@@ -1,0 +1,385 @@
+@font-face {
+  font-family: "PT Serif";
+  src: url("https://fonts.googleapis.com/css?family=PT+Serif") format("woff");
+  src: url("https://fonts.googleapis.com/css?family=PT+Serif") format("woff2");
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font: 1.15rem 'PT Serif', serif; 
+    color: #fff;
+}
+
+
+/* Links style */
+* a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Main wrapper styles */
+.wrapper {
+    background-color: #100e17;
+    min-height: 100vh;
+    display: grid;
+}
+
+/* Start wrapper and header positioning (Less then 1023px devices) */
+@media (max-width: 1023px) {
+    .wrapper {
+        grid-template: 60px 1fr minmax(100px, auto) minmax(100px, auto) minmax(60px, auto) / repeat(12, 1fr);
+        grid-template-areas: "h h h h h h h h h h h h"
+                             "m m m m m m m m m m m m"
+                             "s s s s s s s s s s s s"
+                             "c c c c c c c c c c c c"
+                             "f f f f f f f f f f f f";
+    }
+    nav {
+        display: none;
+    }
+    .logo-image {
+        height: 50px;
+        width: 200px;
+    }
+    header .logo {
+        padding: 2px 0;
+        transition: padding .5s;
+    }
+    .gamer img {
+        width: 75%;
+    }
+}
+
+/* (1024px+ devices) */
+@media (min-width: 1024px) {
+    .wrapper {
+        grid-template: 100px 1fr minmax(100px, auto) minmax(100px, auto) / repeat(12, 1fr);
+        grid-template-areas: "h h h h h h h h h h h h"
+                             "m m m m m m m m s s s s"
+                             "c c c c c c c c s s s s"
+                             "f f f f f f f f f f f f";
+    }
+    nav {
+        grid-column: 4 / 11;
+    }
+    header .search {
+        grid-column: 11 / 13;
+    }
+    header .logo a,
+    nav li a {
+        height: 100px;
+    }
+    nav li img {
+        height: 50px;
+        width: 60px;
+    }
+    .logo-image {
+        height: 60px;
+        width: 240px;
+    }
+    header .logo {
+        padding: 17px 0;
+        transition: padding .5s;
+    }
+    .gamer img {
+        width: 75%;
+    }
+}
+
+/* (1440px+ devices) */
+@media (min-width: 1440px) {
+    .wrapper {
+        grid-template: 130px 1fr minmax(100px, auto) minmax(130px, auto) / repeat(12, 1fr);
+        grid-template-areas: "h h h h h h h h h h h h"
+                             "m m m m m m m m m s s s"
+                             "c c c c c c c c c s s s"
+                             "f f f f f f f f f f f f";
+    }
+    nav {
+        grid-column: 4 / 9;
+    }
+    header .search {
+        grid-column: 9 / 13;
+    }
+    
+    nav li a,
+    header .logo a {
+        height: 130px;
+    }
+    nav li img {
+        height: 65px;
+        width: 78px;
+    }
+    .logo-image {
+        height: 80px;
+        width: 320px;
+    }
+    header .logo {
+        padding: 22px 0;
+        transition: padding .5s;
+    }
+    .gamer img {
+        width: auto;
+    }
+}
+/* End wrapper and header positioning */
+
+/* header */
+header {
+    display: grid;
+    grid-area: h;
+    grid-template: 1fr / repeat(12, 1fr);
+    border-bottom: 2px solid #201c29;
+}
+
+/* header logo */
+header .logo {
+    grid-column: 1 / 4;
+    text-align: center;
+}
+
+/* Start Nav menu */
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    flex: 1;
+}
+
+header nav ul li a {
+    border-left: 1px solid #201c29;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #201c29;
+}
+
+header nav ul li a:hover {
+    background-color: #251F2D;
+}
+/* End Nav menu */
+
+/* Start default blocks positioning */
+main {
+    grid-area: m;
+}
+
+aside {
+    grid-area: s;
+    overflow-wrap: anywhere;
+}
+
+.comments {
+    grid-area: c;
+}
+
+footer {
+    grid-area: f;
+}
+/* End main position */
+
+/* Start tooltip styles */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip:before,
+.tooltip:after {
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    margin-bottom: 15px;
+    transition: opacity .3s;
+    left: 50%;
+}
+
+.tooltip:before {
+    content: attr(data-title);
+    width: 250px;
+    height: auto;
+    background-color: rgba(0, 0, 0, .9);
+    bottom: 30px;
+    margin-left: -125px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.05rem;
+    color: #fff;
+}
+
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip:after {
+    content: "";
+    border-top: 10px solid rgba(0, 0, 0, .9);
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    bottom: 20px;
+    margin-left: -10px;
+}
+/* End tooltip styles */
+
+footer {
+    margin-left: 3%;
+}
+
+/* Mark for selected item (system) */
+.nav_home {
+	background: linear-gradient(#100e17 50%, #251F2D 120%);
+}
+
+/* Style for bold text */
+.transfer {
+    font-weight: bold;
+}
+
+/* Main styles for gamer's window */
+.window {
+	background: linear-gradient(-45deg, #8EC4EA, #D2E8F5);
+	margin: 10px;
+	padding: 20px;
+	border: 2px solid #000;
+    color: #000;
+    font-size: 1.265rem;
+}
+
+aside .window {
+    background: linear-gradient(-45deg, #FE8703, #E2324D);
+    color: #fff;
+}
+
+aside .transfer {
+    text-shadow: 2px 2px 1px #000;
+    padding: 2px;
+}
+
+/* Styles for each subwindow */
+.section {
+	padding: 25px;
+	border: 2px solid #000;
+	margin-bottom: 20px;
+}
+
+aside .window .section ul li {
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 1px #333;
+    padding: 2px;
+}
+
+.gamer {
+    text-align: center;
+}
+
+blockquote {
+    margin: 0;
+    padding: 40px;
+    position: relative;
+}
+
+blockquote p {
+    margin: 10px 0;
+}
+
+blockquote:before, blockquote:after {
+    font-size: 45px;
+    color: #fff;
+    position: absolute;
+    height: 4px;
+    left: 100px;
+    right: 100px;
+    line-height: .5;
+    background: linear-gradient(to right, #000 45%, transparent 45%, transparent), linear-gradient(to right, transparent, transparent 55%, #fff 55%);
+    font-family: serif;
+}
+
+blockquote:before {
+    content: "\201C";
+    top: 30px;
+}
+
+blockquote:after {
+    content: "\201D";
+    bottom: 30px;
+}
+
+.comments {
+    margin-bottom: 50px;
+    margin-left: 10px;
+}
+
+
+.cloud {
+    background-color: rgba(30, 30, 30, 0.5);
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    transition: transform text-shadow 0s;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #fff;
+	position: relative;    
+}
+
+.cloud:after {
+    border-radius: 10px;
+	content: "";
+	display: block;    
+	width: 100%;
+	height: 100%;    
+	position: absolute;
+	top: 0;      
+	left: 0;   
+	background: transparent;
+	background-image: linear-gradient(to top, rgba(255, 255, 255, .5), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+.cloud:hover {
+    transform: translate(-2px, -2px);
+    text-shadow: 5px 5px 5px #000;
+}
+
+.cloud:nth-child(2n) {
+    background-color: rgba(20, 20, 20, 0.5);
+}
+
+.cloud img {
+    align-self: flex-start;
+    margin: 0 30px 0 0;
+    width: 50px;
+    border-radius: 30px;
+}
+
+.cloud-comment {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-name {
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.comment-time {
+    color: #999;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.comment {
+    overflow-wrap: anywhere;
+}
