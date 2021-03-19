@@ -285,6 +285,38 @@ aside .window .section ul li {
     text-align: center;
 }
 
+blockquote {
+    margin: 0;
+    padding: 40px;
+    position: relative;
+}
+
+blockquote p {
+    margin: 10px 0;
+}
+
+blockquote:before, blockquote:after {
+    font-size: 45px;
+    color: #fff;
+    position: absolute;
+    height: 4px;
+    left: 100px;
+    right: 100px;
+    line-height: .5;
+    background: linear-gradient(to right, #000 45%, transparent 45%, transparent), linear-gradient(to right, transparent, transparent 55%, #fff 55%);
+    font-family: serif;
+}
+
+blockquote:before {
+    content: "\201C";
+    top: 30px;
+}
+
+blockquote:after {
+    content: "\201D";
+    bottom: 30px;
+}
+
 .news {
     margin-bottom: 50px;
     margin-left: 10px;
